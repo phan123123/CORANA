@@ -1,0 +1,46 @@
+ + Analyzing /home/phan123123/Desktop/JAIST-Internship/corana/samples/0373ee9a2fe14beef681e5dcfaf5bfe4/0373ee9a2fe14beef681e5dcfaf5bfe4 ...
+-> Capstone disassembler elapsed: 3577ms
+-> Exporting to .capstone-asm file ...
+-> Executing 0 : mov ip,sp 
+-> Executing 4 : push {r4,r5,r6,r7,r8,sb,sl,fp,ip,lr,pc} 
+-> Executing 8 : sub fp,ip,#4 
+-> Executing 12 : ldmdb fp,{r4,r5,r6,r7,r8,sb,sl,fp,sp,pc} 
+-> Executing 16 : push {r4,lr} 
+-> Executing 20 : ldr r4,[pc,#0x2c] 
+-> Executing 24 : ldrb r3,[r4] 
+-> Executing 28 : cmp r3,#0 
+-> Executing 32 : b #0x40 
+	-> Direct Jump to 64 if NE 
+	-> Checking path constrains by Z3 (not (= (bvsub r3 #x00000000) #x00000000)) ... SAT
+	-> Checking path constrains by Z3 (not (= (bvsub r3 #x00000000) #x00000000)) ... SAT
+	-> Start Jumping from 32 --> 64
+-> Executing 64 : pop {r4,lr} 
+-> Executing 68 : bx lr 
+	-> Indirect Jump to lr if null 
+	-> Destination is undetectable.
+-----> Recursively roll back to the parent branch: 36
+	-> Start Jumping from 68 --> 36
+-> Executing 36 : ldr r3,[pc,#0x20] 
+-> Executing 40 : cmp r3,#0 
+-> Executing 44 : b 44-2 
+	-> Direct Jump to 44-2 if NE 
+	-> Checking path constrains by Z3 (and (not (= (bvsub r3 #x00000000) #x00000000)) (not (= (bvsub #x00000000 #x00000000) #x00000000))) ... UNSAT
+	-> Checking path constrains by Z3 (and (not (= (bvsub r3 #x00000000) #x00000000)) (not (not (= (bvsub #x00000000 #x00000000) #x0000000 ... SAT
+	-> Start Jumping from 44 --> 48
+-> Executing 48 : b 48-2 
+	-> Direct Jump to 48-2 if NE 
+	-> Checking path constrains by Z3 (and (and (not (= (bvsub r3 #x00000000) #x00000000)) (not (not (= (bvsub #x00000000 #x00000000) #x00 ... UNSAT
+	-> Checking path constrains by Z3 (and (and (not (= (bvsub r3 #x00000000) #x00000000)) (not (not (= (bvsub #x00000000 #x00000000) #x00 ... SAT
+	-> Start Jumping from 48 --> 52
+-> Executing 52 : bx r3 
+	-> Indirect Jump to r3 if NE 
+	-> Checking path constrains by Z3 (and (and (and (not (= (bvsub r3 #x00000000) #x00000000)) (not (not (= (bvsub #x00000000 #x00000000) ... UNSAT
+	-> Checking path constrains by Z3 (and (and (and (not (= (bvsub r3 #x00000000) #x00000000)) (not (not (= (bvsub #x00000000 #x00000000) ... SAT
+	-> Start Jumping from 52 --> 56
+-> Executing 56 : mov r3,#1 
+-> Executing 60 : strb r3,[r4] 
+-> Executing 64 : pop {r4,lr} 
+-> Executing 68 : bx lr 
+	-> Indirect Jump to lr if null 
+	-> Destination is undetectable.
+-> Time elapsed: 1013ms

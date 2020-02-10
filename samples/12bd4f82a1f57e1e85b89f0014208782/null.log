@@ -1,0 +1,19 @@
+ + Analyzing /home/phan123123/Desktop/JAIST-Internship/corana/samples/12bd4f82a1f57e1e85b89f0014208782/12bd4f82a1f57e1e85b89f0014208782 ...
+-> Capstone disassembler elapsed: 3750ms
+-> Exporting to .capstone-asm file ...
+-> Executing 0 : mov ip,sp 
+-> Executing 4 : push {r4,r5,r6,r7,r8,sb,sl,fp,ip,lr,pc} 
+-> Executing 8 : sub fp,ip,#4 
+-> Executing 12 : bl #0x304 
+	-> Direct Jump to 772 if null 
+	-> Start Jumping from 12 --> 772
+-> Executing 772 : ldr r3,[pc,#0x3c] 
+-> Executing 776 : cmp r3,#0 
+-> Executing 780 : str lr,[sp,#-4]! 
+-> Executing 784 : ldr r0,[pc,#0x34] 
+-> Executing 788 : ldr r1,[pc,#0x34] 
+-> Executing 792 : b 792-2 
+	-> Direct Jump to 792-2 if NE 
+	-> Checking path constrains by Z3 (not (= (bvsub #x00000000 #x00000000) #x00000000)) ... UNSAT
+	-> Checking path constrains by Z3 (not (= (bvsub #x00000000 #x00000000) #x00000000)) ... UNSAT
+-> Time elapsed: 452ms
